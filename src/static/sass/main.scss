@@ -13,6 +13,7 @@ html {
 }
 
 body {
+    position: relative;
     height: 100%;
 }
 
@@ -75,7 +76,7 @@ button {
 
     &-wrapper {
         width: 100%;
-        height: 365px;
+        height: 600px;
         background: url('../img/tablecloth.jpg') no-repeat;
         background-position: top;
     }
@@ -223,8 +224,107 @@ button {
             font-weight: bold;
         }
     }
-    // &-background {
-    // }
 }
 
-// --- /main
+// --- cart
+
+.cart {
+    position: absolute;
+    top: 235px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &-inform {
+        width: 390px;
+    }
+
+    &-wrapper {
+        width: 1030px;
+        height: 450px;
+        background: url('../img/white-background.jpg');
+    }
+
+    &-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 970px;
+        margin: 0 auto;
+    }
+
+    &-title {
+        padding-top: 42px;
+        font-family: $georgia;
+        font-size: 35px;
+        font-style: italic;
+        font-weight: normal;
+        color: $title-color;
+    }
+
+    &-subject {
+        display: flex;
+        margin-top: 35px;
+        margin-bottom: 45px;
+
+        &__item {
+            width: 195px;
+            height: 50px;
+            font-size: 15px;
+            line-height: 50px;
+            color: $title-color;
+            text-align: center;
+            background-color: #fdfcfa;
+        }
+
+        .left {
+            border: 1px solid #f0e4ca;
+            border-right: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .right {
+            border: 1px solid #f0e4ca;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .active {
+            background: transparent;
+            border: 1px dotted #d15b0a;
+            border-left: 1px solid #d15b0a;
+
+            span {
+                margin-top: 100px;
+                border-bottom: 1px dotted #c3bab4;
+            }
+        }
+    }
+
+    &-subtitle {
+        margin-bottom: 22px;
+        font-family: $georgia;
+        font-style: italic;
+        font-weight: normal;
+        color: $title-color;
+    }
+
+    &-user {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            padding-bottom: 9px;
+            padding-left: 10px;
+        }
+
+        input {
+            width: 185px;
+            height: 35px;
+            padding-left: 11px;
+            border: 1px solid #c4b7b1;
+            border-radius: 3px;
+
+            @include placeholder {
+                color: #b3aaa6;
+            }
+        }
+    }
+}

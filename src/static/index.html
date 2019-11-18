@@ -14,60 +14,100 @@
 
 <body>
     <header class="header">
-        <div>
-            <div class="header-wrapper">
-                <div class="header-container">
-                    <div class="header-top-menu">
-                        <ul class="header-links">
-                            <li><a href="#">О магазине</a></li>
-                            <li><a href="#">Доставка и самовывоз</a></li>
-                            <li><a href="#">Оплата</a></li>
-                            <li><a href="#">Контакты</a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                        <div class="header-account">
-                            <div class="header-account-location"><img src="static/img/location.png" alt="location"><span
-                                    class="header-account-location__city">Город:</span><a href="#">Москва</a></div>
-                            <div><img src="static/img/account.png" alt="account"><a href="#">Личный кабинет</a></div>
-                        </div>
+        <div class="header-wrapper">
+            <div class="header-container">
+
+                <div class="header-top-menu">
+                    <ul class="header-links">
+                        <li><a href="#">О магазине</a></li>
+                        <li><a href="#">Доставка и самовывоз</a></li>
+                        <li><a href="#">Оплата</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                    <div class="header-account">
+                        <div class="header-account-location"><img src="static/img/location.png" alt="location"><span
+                                class="header-account-location__city">Город:</span><a href="#">Москва</a></div>
+                        <div><img src="static/img/account.png" alt="account"><a href="#">Личный кабинет</a></div>
                     </div>
-                    <div class="header-main">
-                        <div class="header-main-logo"><a href="#"><img src="static/img/logo.png" alt="logo"></a></div>
-                        <div class="header-main-search"><a href="#"><img src="static/img/search.png"
-                                    alt="search"></a><input type="" placeholder="Найти что-нибудь">
-                        </div>
-                        <div class="header-main-phone">
-                            <div class="header-main-phone-number">+7 800 555-33-86</div>
-                            <div class="header-main-phone-callback"><a href="#">Обратный звонок</a></div>
-                        </div>
+                </div>
+
+                <div class="header-main">
+                    <div class="header-main-logo"><a href="#"><img src="static/img/logo.png" alt="logo"></a></div>
+                    <div class="header-main-search"><a href="#"><img src="static/img/search.png" alt="search"></a><input
+                            type="" placeholder="Найти что-нибудь">
                     </div>
-                    <div class="header-nav">
-                        <ul class="header-nav-menu">
-                            <li><a href="#">Мельницы</a></li>
-                            <li><a href="#">Техника</a></li>
-                            <li><a href="#">Для выпечки</a></li>
-                            <li><a href="#">Посуда</a></li>
-                            <li><a href="#">Проращиватели</a></li>
-                            <li><a href="#">Детям</a></li>
-                            <li><a href="#">Чай из Непала</a></li>
-                        </ul>
-                        <div class="header-cart">
-                            <a href="#">
-                                <div class="header-cart-basket">
-                                    <img src="static/img/cart.png" alt="cart">
-                                    <div class="header-cart-counter"><img src="static/img/cart-counter.png" alt="cart-counter"></div>
-                                    <div class="header-cart-total">2</div>
-                                </div>
-                            </a>
-                            <div class="header-cart-sum">13 990 ₽</div>
-                        </div>
+                    <div class="header-main-phone">
+                        <div class="header-main-phone-number">+7 800 555-33-86</div>
+                        <div class="header-main-phone-callback"><a href="#">Обратный звонок</a></div>
+                    </div>
+                </div>
+
+                <div class="header-nav">
+                    <ul class="header-nav-menu">
+                        <li><a href="#">Мельницы</a></li>
+                        <li><a href="#">Техника</a></li>
+                        <li><a href="#">Для выпечки</a></li>
+                        <li><a href="#">Посуда</a></li>
+                        <li><a href="#">Проращиватели</a></li>
+                        <li><a href="#">Детям</a></li>
+                        <li><a href="#">Чай из Непала</a></li>
+                    </ul>
+                    <div class="header-cart">
+                        <a href="#">
+                            <div class="header-cart-basket">
+                                <img src="static/img/cart.png" alt="cart">
+                                <div class="header-cart-counter"><img src="static/img/cart-counter.png"
+                                        alt="cart-counter"></div>
+                                <div class="header-cart-total">5</div>
+                            </div>
+                        </a>
+                        <div class="header-cart-sum">13 990 ₽</div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div class="header-background"><img src="static/img/background.jpg" alt="background"></div> -->
         </div>
     </header>
+
+    <section class="cart">
+        <div class="cart-wrapper">
+            <div class="cart-container">
+                <div class="cart-inform">
+                    <h1 class="cart-title">Оформление заказа</h1>
+                    <div class="cart-subject">
+                        <a href="#">
+                            <div class="cart-subject__item left"><span>Физическое лицо</span></div>
+                        </a>
+                        <a href="#">
+                            <div class="cart-subject__item right active"><span>Юридическое лицо</span></div>
+                        </a>
+                    </div>
+                    <h2 class="cart-subtitle">Контактные данные</h2>
+                    <div class="cart-user">
+                        <div class="cart-user-name">
+                            <p>Имя</p>
+                            <input type="text" placeholder="Александр">
+                        </div>
+                        <div class="cart-user-surname">
+                            <p>Фамилия</p>
+                            <input type="text" placeholder="Пушкин">
+                        </div>
+                    </div>
+                    <div>Эл.почта</div>
+                    <input type="text" placeholder="почта">
+                    <div>Номер телефона</div>
+                    <div>+7</div>
+                    <input type="text" placeholder="999 432 34-21">
+                    <p>Недопустимые символы. Это поле может содержать только латиницу.</p>
+                </div>
+                <div class="cart-order">
+                    <h2>Ваш заказ</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script src="static/js/main.js"></script>
 </body>
 
