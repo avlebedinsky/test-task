@@ -10,103 +10,295 @@
 
     <link rel="shortcut icon" href="static/img/favicon.png">
     <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=90286dcc-e3a1-485a-bda1-f754ed180904&lang=ru_RU"
+        type="text/javascript"> </script>
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-wrapper">
-            <div class="header-container">
+    <div class="container">
+        <header class="header">
+            <div class="bg"></div>
+            <div class="header-inner">
+                <div class="header-container">
 
-                <div class="header-top-menu">
-                    <ul class="header-links">
-                        <li><a href="#">О магазине</a></li>
-                        <li><a href="#">Доставка и самовывоз</a></li>
-                        <li><a href="#">Оплата</a></li>
-                        <li><a href="#">Контакты</a></li>
-                        <li><a href="#"></a></li>
-                    </ul>
-                    <div class="header-account">
-                        <div class="header-account-location"><img src="static/img/location.png" alt="location"><span
-                                class="header-account-location__city">Город:</span><a href="#">Москва</a></div>
-                        <div><img src="static/img/account.png" alt="account"><a href="#">Личный кабинет</a></div>
+                    <div class="header-top-menu">
+                        <ul class="header-links">
+                            <li><a href="#">О магазине</a></li>
+                            <li><a href="#">Доставка и самовывоз</a></li>
+                            <li><a href="#">Оплата</a></li>
+                            <li><a href="#">Контакты</a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                        <div class="header-account">
+                            <div class="header-account-location"><img src="static/img/location.png" alt="location"><span
+                                    class="header-account-location__city">Город:</span><a href="#">Москва</a></div>
+                            <div><img src="static/img/account.png" alt="account"><a href="#">Личный кабинет</a></div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="header-main">
-                    <div class="header-main-logo"><a href="#"><img src="static/img/logo.png" alt="logo"></a></div>
-                    <div class="header-main-search"><a href="#"><img src="static/img/search.png" alt="search"></a><input
-                            type="" placeholder="Найти что-нибудь">
+                    <div class="header-main">
+                        <div class="header-main-logo"><a href="#"><img src="static/img/logo.png" alt="logo"></a></div>
+                        <div class="header-main-search"><a href="#"><img src="static/img/search.png"
+                                    alt="search"></a><input type="" placeholder="Найти что-нибудь">
+                        </div>
+                        <div class="header-main-phone">
+                            <div class="header-main-phone-number">+7 800 555-33-86</div>
+                            <div class="header-main-phone-callback"><a href="#">Обратный звонок</a></div>
+                        </div>
                     </div>
-                    <div class="header-main-phone">
-                        <div class="header-main-phone-number">+7 800 555-33-86</div>
-                        <div class="header-main-phone-callback"><a href="#">Обратный звонок</a></div>
-                    </div>
-                </div>
 
-                <div class="header-nav">
-                    <ul class="header-nav-menu">
-                        <li><a href="#">Мельницы</a></li>
-                        <li><a href="#">Техника</a></li>
-                        <li><a href="#">Для выпечки</a></li>
-                        <li><a href="#">Посуда</a></li>
-                        <li><a href="#">Проращиватели</a></li>
-                        <li><a href="#">Детям</a></li>
-                        <li><a href="#">Чай из Непала</a></li>
-                    </ul>
-                    <div class="header-cart">
-                        <a href="#">
-                            <div class="header-cart-basket">
-                                <img src="static/img/cart.png" alt="cart">
-                                <div class="header-cart-counter"><img src="static/img/cart-counter.png"
-                                        alt="cart-counter"></div>
-                                <div class="header-cart-total">5</div>
-                            </div>
-                        </a>
-                        <div class="header-cart-sum">13 990 ₽</div>
+                    <div class="header-nav">
+                        <ul class="header-nav-menu">
+                            <li><a href="#">Мельницы</a></li>
+                            <li><a href="#">Техника</a></li>
+                            <li><a href="#">Для выпечки</a></li>
+                            <li><a href="#">Посуда</a></li>
+                            <li><a href="#">Проращиватели</a></li>
+                            <li><a href="#">Детям</a></li>
+                            <li><a href="#">Чай из Непала</a></li>
+                        </ul>
+                        <div class="header-cart">
+                            <a href="#">
+                                <div class="header-cart-basket">
+                                    <img src="static/img/cart.png" alt="cart">
+                                    <div class="header-cart-counter"><img src="static/img/cart-counter.png"
+                                            alt="cart-counter"></div>
+                                    <div class="header-cart-total">5</div>
+                                </div>
+                            </a>
+                            <div class="header-cart-sum">13 990 ₽</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-    </header>
+        </header>
 
-    <section class="cart">
         <div class="cart-wrapper">
-            <div class="cart-container">
-                <div class="cart-inform">
-                    <h1 class="cart-title">Оформление заказа</h1>
-                    <div class="cart-subject">
-                        <a href="#">
-                            <div class="cart-subject__item left"><span>Физическое лицо</span></div>
-                        </a>
-                        <a href="#">
-                            <div class="cart-subject__item right active"><span>Юридическое лицо</span></div>
-                        </a>
-                    </div>
-                    <h2 class="cart-subtitle">Контактные данные</h2>
-                    <div class="cart-user">
-                        <div class="cart-user-name">
-                            <p>Имя</p>
-                            <input type="text" placeholder="Александр">
+            <section class="cart">
+                <div class="cart-container">
+                    <div class="cart-inform">
+                        <h1 class="cart-title">Оформление заказа</h1>
+                        <div class="cart-subject">
+                            <a href="#">
+                                <div class="cart-subject__item left"><span>Физическое лицо</span></div>
+                            </a>
+                            <a href="#">
+                                <div class="cart-subject__item right active"><span>Юридическое лицо</span></div>
+                            </a>
                         </div>
-                        <div class="cart-user-surname">
-                            <p>Фамилия</p>
-                            <input type="text" placeholder="Пушкин">
+
+                        <h2 class="cart-subtitle">Контактные данные</h2>
+
+                        <div class="cart-user">
+                            <div class="cart-user-name">
+                                <p class="cart-form-subtitle">Имя</p>
+                                <input type="text" placeholder="Александр">
+                            </div>
+                            <div class="cart-user-surname">
+                                <p class="cart-form-subtitle">Фамилия</p>
+                                <input type="text" placeholder="Пушкин">
+                            </div>
+                        </div>
+
+                        <div class="cart-contact">
+                            <div class="cart-contact-mail">
+                                <p class="cart-form-subtitle">Эл.почта</p>
+                                <input type="text" placeholder="почта">
+                                <p class="cart-contact-mail-error">Недопустимые символы. Это поле может содержать только
+                                    латиницу.</p>
+                            </div>
+                            <div class="cart-contact-number">
+                                <p class="cart-form-subtitle">Номер телефона</p>
+                                <div class="cart-contact-number-phone">
+                                    <p class="cart-contact-number-phone-first">+7</p>
+                                    <input type="text" placeholder="999 432 34-21">
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="cart-subtitle">Адрес и способ доставки</h2>
+
+                        <div class="cart-delivery">
+                            <div class="cart-delivery-country">
+                                <div>
+                                    <p class="cart-form-subtitle">Страна</p>
+                                    <select name="" id="">
+                                        <option value="">Россия</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <p class="cart-form-subtitle">Город</p>
+                                    <input type="text" placeholder="Москва">
+                                </div>
+                            </div>
+
+                            <h3 class="cart-subtitle-small">Способ доставки</h3>
+                            <form>
+                                <label>
+                                    <div class="cart-delivery-option">
+                                        <div>
+                                            <input type="checkbox" class="checkbox">
+                                            <span class="checkbox-fake"></span>
+                                            <span class="cart-delivery-option-title">Доставка курьерской службой — 710
+                                                ₽</span>
+                                            <div class="cart-delivery-option-text">(Срок доставки — 1–3 дня)</div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label>
+                                    <div class="cart-delivery-option middle">
+                                        <div>
+                                            <input type="checkbox" class="checkbox">
+                                            <span class="checkbox-fake"></span>
+                                            <span class="cart-delivery-option-title">Доставка транспортной компанией —
+                                                210
+                                                ₽</span>
+                                            <div class="cart-delivery-option-text">(Данный вид доставки возможен при
+                                                полной
+                                                предоплате заказа. Срок доставки — 3–5
+                                                дней)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label>
+                                    <div class="cart-delivery-option active">
+                                        <div>
+                                            <input type="checkbox" class="checkbox">
+                                            <span class="checkbox-fake"></span>
+                                            <span class="cart-delivery-option-title">Самовывоз — 180 ₽</span>
+                                            <div class="cart-delivery-option-text">Доставка до пункта самовывоза займет
+                                                2–3
+                                                дня</div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </form>
+
+                            <h3 class="cart-subtitle-small">Пункт самовывоза</h3>
+                            <div class="cart-delivery-country">
+                                <div>
+                                    <p class="cart-form-subtitle">Станция метро</p>
+                                    <select name="" id="" class="subway">
+                                        <option value="">Кузнецкий мост</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div id="map" class="cart-map">
+                                <div class="cart-map-title">
+                                    <p>Ул. Кузнецкий мост, 9/10 стр.2, офис 204</p>
+                                    <p>Ежедневно с 12:00 до 22:00</p>
+                                </div>
+                            </div>
+
+                            <h2 class="cart-subtitle">Комментарий к заказу</h2>
+                            <textarea name="" id="" cols="61" rows="10" class="cart-comment"></textarea>
+
+                            <div class="cart-pay">
+                                <button class="cart-pay-btn">К выбору способа оплаты
+                                    <img src="static/img/arrow.png" alt="">
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div>Эл.почта</div>
-                    <input type="text" placeholder="почта">
-                    <div>Номер телефона</div>
-                    <div>+7</div>
-                    <input type="text" placeholder="999 432 34-21">
-                    <p>Недопустимые символы. Это поле может содержать только латиницу.</p>
+
+                    <div class="cart-order">
+                        <div class="cart-order-product">
+                            <h2>Ваш заказ</h2>
+                            <div class="cart-order-product-item">
+                                <div class="cart-order-product-item-name">Мельница ручная Kornkraft Mia aMola</div>
+                                <div>18 990 ₽</div>
+                            </div>
+                            <div class="cart-order-product-item">
+                                <div class="cart-order-product-item-name">Пшеница БИО, 1 кг (Россия)<div>(2 шт)</div>
+                                </div>
+                                <div>420 ₽</div>
+                            </div>
+                        </div>
+                        <div class="cart-order-product subtotal">
+                            <div class="cart-order-product-item">
+                                <div>Размер скидки<span>(5%)</span></div>
+                                <div>420 ₽</div>
+                            </div>
+                            <div class="cart-order-product-item">
+                                <div>Итого</div>
+                                <div>18 344 ₽</div>
+                            </div>
+                            <div class="cart-order-product-item">
+                                <div>Самовывоз</div>
+                                <div>390 ₽</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="cart-order-product total">
+                                <div class="cart-order-product-item">
+                                    <div class="total-title">Сумм с доставкой</div>
+                                    <div class="total-sum">18 734 ₽</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="cart-order">
-                    <h2>Ваш заказ</h2>
-                </div>
-            </div>
+            </section>
         </div>
-    </section>
+
+        <div class="footer-wrapper">
+            <footer class="footer">
+                <div class="footer-inner">
+                    <div class="footer-item">
+                        <h3>Каталог</h3>
+                        <div class="footer-item-inner">
+                            <div class="footer-item-inner-column">
+                                <a href="#">Мельницы</a>
+                                <a href="#">Техника</a>
+                                <a href="#">Для выпечки</a>
+                                <a href="#">Посуда</a>
+                            </div>
+                            <div>
+                                <a href="#">Проращиватели</a>
+                                <a href="#">Детям</a>
+                                <a href="#">Чай из Непала</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-item">
+                        <h3>Информация</h3>
+                        <div>
+                            <a href="#">Доставка и самовывоз</a>
+                            <a href="#">О магазине</a>
+                            <a href="#">10 причин покупать у нас</a>
+                            <a href="#">Оплата</a>
+                            <a href="#">Мастер-классы</a>
+                            <a href="#">Блог</a>
+                        </div>
+                    </div>
+                    <div class="footer-item">
+                        <h3>Контакты</h3>
+                        <div>
+                            <p>+7 (495) 789 41 43 — Москва</p>
+                            <p>+7 (812) 385 55 86 — Санкт-Петербург</p>
+                            <p class="last">+7 (800) 555 33 86 — вся Россия</p>
+                            <a href="#">Обратная связь</a>
+                            <a href="#">info@hlebomoli.ru</a>
+                        </div>
+                    </div>
+                    <div class="footer-item">
+                        <h3>Вступайте в клуб</h3>
+                        <div>
+                            <p class="last">Подпишитесь на наши новости и будьте в кусе всех акций, скидок и новых поступлений, а также самых изысканных рецептов.</p>
+                            <form>
+                                <input type="text">
+                                <button>></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+            </footer>
+        </div>
+    </div>
 
     <script src="static/js/main.js"></script>
 </body>
