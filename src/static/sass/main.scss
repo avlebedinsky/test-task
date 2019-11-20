@@ -69,6 +69,10 @@ button {
     box-sizing: border-box;
 }
 
+.hide {
+    display: none;
+}
+
 // --- /common
 // --- main
 
@@ -323,10 +327,21 @@ button {
             border-radius: 0 5px 5px 0;
         }
 
-        .active {
+        .active.right {
             background: transparent;
             border: 1px dotted #d15b0a;
             border-left: 1px solid #d15b0a;
+
+            span {
+                margin-top: 100px;
+                border-bottom: 1px dotted #c3bab4;
+            }
+        }
+
+        .active.left {
+            background: transparent;
+            border: 1px dotted #d15b0a;
+            border-right: 1px solid #d15b0a;
 
             span {
                 margin-top: 100px;
@@ -432,43 +447,40 @@ button {
         }
 
         &-option {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 390px;
-            height: 72px;
-            cursor: pointer;
-            border: 1px dashed #f0e4ca;
+            margin-bottom: 22px;
 
-            .checkbox-fake {
-                margin: 0 14px;
+            &-item {
+                z-index: 100;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 390px;
+                height: 72px;
+                margin: -1px 1px 0 0;
+                cursor: pointer;
+                border: 1px dashed #f0e4ca;
+
+                .checkbox-fake {
+                    margin: 0 14px;
+                }
+
+                &-title {
+                    font-size: 17px;
+                    color: $title-color;
+                }
+
+                &-text {
+                    padding-top: 8px;
+                    padding-left: 45px;
+                    font-size: 13px;
+                    color: #c4b7b1;
+                }
             }
-
-            &-title {
-                font-size: 17px;
-                color: $title-color;
-            }
-
-            &-text {
-                padding-top: 8px;
-                padding-left: 45px;
-                font-size: 13px;
-                color: #c4b7b1;
-            }
-        }
-
-        .middle {
-            border-top: none;
-            border-bottom: none;
         }
 
         .active {
             background-color: #fdfcfa;
             border: 1px solid #f0e4ca;
-        }
-
-        form {
-            margin-bottom: 22px;
         }
     }
 
@@ -488,7 +500,7 @@ button {
         margin-bottom: 35px;
         border: 1px solid #f0e4ca;
         border-radius: 3px;
-        box-shadow: 0 12px 11px 0 #f0e4ca73;
+        box-shadow: 0 45px 42px -53px rgba(250, 229, 187, 0.85);
 
         &-title {
             position: absolute;
@@ -537,7 +549,7 @@ button {
         margin-top: 117px;
         border: 1px solid #f0e4ca;
         border-radius: 3px;
-        box-shadow: 0 12px 11px 0 #f0e4ca73;
+        box-shadow: 0 45px 42px -53px rgba(250, 229, 187, 0.85);
 
         &-product {
             padding-top: 22px;
@@ -597,6 +609,7 @@ button {
         height: 302px;
         background: url('../img/footer.jpg') no-repeat;
         background-position: bottom;
+        background-size: cover;
     }
 
     &-inner {
@@ -610,10 +623,10 @@ button {
 
     &-item {
         width: 230px;
-        margin-bottom: 50px;
+        margin-bottom: 48px;
 
         h3 {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             font-family: $georgia;
             font-size: 17px;
             font-style: italic;
@@ -627,15 +640,15 @@ button {
         }
 
         a + a {
-            margin-top: 8px;
+            margin-top: 6px;
         }
 
         p + p {
-            margin-top: 8px;
+            margin-top: 6px;
         }
 
         .last {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         &-inner {
@@ -651,6 +664,7 @@ button {
             height: 40px;
             padding: 0 15px;
             border: 1px solid #e5dfd9;
+            border-right: none;
             border-radius: 3px 0 0 3px;
 
             @include placeholder {
@@ -663,8 +677,35 @@ button {
             height: 40px;
             font-size: 20px;
             color: #fff;
+            cursor: pointer;
             background-color: $accent-color;
             border: none;
+            border-radius: 0 3px 3px 0;
+        }
+
+        &-form {
+            display: flex;
+        }
+    }
+
+    &-copyright {
+        display: flex;
+        justify-content: space-between;
+        width: 970px;
+        margin: 0 auto;
+
+        &-text {
+            margin-top: 19px;
+            margin-bottom: 19px;
+        }
+
+        &-icon {
+            display: flex;
+            margin-top: 13px;
+
+            a + a {
+                margin-left: 8px;
+            }
         }
     }
 }
