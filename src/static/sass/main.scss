@@ -410,12 +410,12 @@ button {
                     line-height: 34px;
                     text-align: center;
                     border: 1px solid #c4b7b1;
+                    border-right: none;
                     border-radius: 3px 0 0 3px;
                 }
 
                 input[type="text"] {
                     width: 122px;
-                    border-left: none;
                     border-radius: 0 3px 3px 0;
                 }
             }
@@ -431,6 +431,7 @@ button {
             select {
                 width: 185px;
                 height: 35px;
+                padding-left: 11px;
                 color: #c4b7b1;
                 border: 1px solid #c4b7b1;
                 border-radius: 3px;
@@ -708,4 +709,8 @@ button {
             }
         }
     }
+}
+
+input[type="text"]:invalid {
+    border: 1px solid red;
 }
