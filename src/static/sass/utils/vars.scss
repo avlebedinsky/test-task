@@ -10,25 +10,12 @@ $calibri: 'Calibri', sans-serif;
 $georgia: 'Georgia', sans-serif;
 $base-font-size: 14px;
 
-$breakpoints: (
-    "phone"       : 400px,
-    "phone-wide"  : 480px,
-    "phablet"     : 560px,
-    "tablet-small": 640px,
-    "tablet"      : 768px,
-    "tablet-wide" : 1024px,
-    "desktop"     : 1248px,
-    "desktop-wide": 1440px
-);
-
-$content-size: 1024px;
-
 $screen-sm: 576px;
 $screen-md: 768px;
 $screen-lg: 992px;
-$screen-xl: 1200px;
+$screen-xl: 1000px;
 
 $screen-xs-max: 575px;
 $screen-sm-max: 767px;
 $screen-md-max: 991px;
-$screen-lg-max: 1199px;
+$screen-lg-max: 999px;

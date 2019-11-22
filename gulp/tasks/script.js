@@ -13,9 +13,9 @@ module.exports = function () {
 
     $.gulp.task('scripts', function () {
         return $.gulp.src('src/static/js/main.js')
-            // .pipe($.gp.babel({
-            //     presets: ['@babel/env']
-            // }))
+            .pipe($.gp.babel({
+                presets: ['@babel/env']
+            }))
             .pipe($.gulp.dest('build/static/js'))
             .pipe($.bs.reload({
                 stream: true

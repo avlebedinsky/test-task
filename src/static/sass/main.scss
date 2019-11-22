@@ -93,7 +93,7 @@ button {
     // }
 
     &-container {
-        width: 970px;
+        max-width: 970px;
         margin: 0 auto;
     }
 
@@ -103,6 +103,10 @@ button {
         padding-top: 20px;
         padding-bottom: 15px;
         border-bottom: 1px solid #dcd4ca;
+
+        @media (max-width: $screen-xl) {
+            flex-direction: column;
+        }
     }
 
     &-links {
@@ -114,6 +118,11 @@ button {
 
         a {
             border-bottom: 1px solid #c3bab4;
+        }
+
+        @media (max-width: $screen-xl) {
+            justify-content: center;
+            padding-bottom: 20px;
         }
     }
 
@@ -135,6 +144,10 @@ button {
         img {
             padding-right: 10px;
         }
+
+        @media (max-width: $screen-xl) {
+            justify-content: center;
+        }
     }
 
     &-main {
@@ -151,6 +164,10 @@ button {
                 position: absolute;
                 top: 10px;
                 left: 10px;
+
+                @media (max-width: $screen-xl) {
+                    top: 25px;
+                }
             }
 
             input {
@@ -163,6 +180,10 @@ button {
                 @include placeholder {
                     color: #b3aaa6;
                 }
+            }
+
+            @media (max-width: $screen-xl) {
+                padding: 15px 0;
             }
         }
 
@@ -183,6 +204,10 @@ button {
                 }
             }
         }
+
+        @media (max-width: $screen-xl) {
+            flex-direction: column;
+        }
     }
 
     &-nav {
@@ -202,7 +227,23 @@ button {
 
             li + li {
                 margin-left: 37px;
+
+                @media (max-width: $screen-xl) {
+                    margin-top: 10px;
+                    margin-left: 0;
+                }
             }
+
+            @media (max-width: $screen-xl) {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: $screen-xl) {
+            flex-direction: column;
+            padding-top: 20px;
+            padding-left: 20px;
         }
     }
 
@@ -234,20 +275,25 @@ button {
             font-size: 17px;
             font-weight: bold;
         }
+
+        @media (max-width: $screen-xl) {
+            justify-content: center;
+            padding: 20px;
+        }
     }
 }
 
 // --- cart
 
 .cart {
-    width: 970px;
+    max-width: 970px;
     margin: 0 auto;
 
-    .checkbox {
+    .radio {
         display: none;
     }
 
-    .checkbox-fake {
+    .radio-fake {
         position: relative;
         display: inline-block;
         width: 16px;
@@ -256,7 +302,7 @@ button {
         border-radius: 50%;
     }
 
-    .checkbox-fake::before {
+    .radio-fake::before {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -271,16 +317,20 @@ button {
         transform: translate(-50%, -50%);
     }
 
-    .checkbox:checked + .checkbox-fake::before {
+    .radio:checked + .radio-fake::before {
         opacity: 1;
     }
 
     &-inform {
         width: 390px;
+
+        @media (max-width: $screen-xl) {
+            margin-top: 45px;
+        }
     }
 
     &-wrapper {
-        width: 1030px;
+        max-width: 1030px;
         margin: 0 auto;
         background: url('../img/white-background.jpg');
     }
@@ -290,6 +340,11 @@ button {
         justify-content: space-between;
         max-width: 970px;
         margin: 0 auto;
+
+        @media (max-width: $screen-xl) {
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     &-title {
@@ -299,6 +354,11 @@ button {
         font-style: italic;
         font-weight: normal;
         color: $title-color;
+
+        @media (max-width: $screen-xl) {
+            padding-top: 0;
+            text-align: center;
+        }
     }
 
     &-subject {
@@ -461,8 +521,8 @@ button {
                 cursor: pointer;
                 border: 1px dashed #f0e4ca;
 
-                .checkbox-fake {
-                    margin: 0 14px;
+                .radio-fake {
+                    margin: -2px 14px;
                 }
 
                 &-title {
@@ -512,7 +572,7 @@ button {
             flex-direction: column;
             justify-content: flex-end;
             width: 100%;
-            height: 30%;
+            height: 45%;
             padding: 0 0 24px 24px;
             font-size: 16px;
             color: $title-color;
@@ -522,7 +582,12 @@ button {
     }
 
     &-comment {
+        width: 390px;
         border: 1px solid #c4b7b1;
+    }
+
+    .invalid {
+        border: 1px solid red;
     }
 
     &-pay {
@@ -599,6 +664,11 @@ button {
                 color: $title-color;
             }
         }
+
+        @media (max-width: $screen-xl) {
+            order: -1;
+            margin-top: 0;
+        }
     }
 }
 // --- /cart
@@ -616,14 +686,18 @@ button {
     &-inner {
         display: flex;
         justify-content: space-between;
-        width: 970px;
+        max-width: 970px;
         padding-top: 40px;
         margin: 0 auto;
         border-bottom: 2px solid $accent-color;
+
+        @media (max-width: $screen-xl) {
+            padding: 20px;
+        }
     }
 
     &-item {
-        width: 230px;
+        max-width: 230px;
         margin-bottom: 48px;
 
         h3 {
@@ -657,11 +731,15 @@ button {
 
             &-column {
                 margin-right: 26px;
+
+                @media (max-width: $screen-xl) {
+                    margin-right: 10px;
+                }
             }
         }
 
         input {
-            width: 186px;
+            max-width: 186px;
             height: 40px;
             padding: 0 15px;
             border: 1px solid #e5dfd9;
@@ -670,6 +748,10 @@ button {
 
             @include placeholder {
                 color: #c4b7b1;
+            }
+
+            @media (max-width: $screen-xl) {
+                width: 133px;
             }
         }
 
@@ -687,13 +769,28 @@ button {
         &-form {
             display: flex;
         }
+
+        @media (max-width: $screen-xl) {
+            margin-bottom: 0;
+        }
+    }
+
+    &-item + .footer-item {
+        @media (max-width: $screen-xl) {
+            margin-left: 10px;
+        }
     }
 
     &-copyright {
         display: flex;
         justify-content: space-between;
-        width: 970px;
+        max-width: 970px;
         margin: 0 auto;
+
+        &-wrapper {
+            display: flex;
+            align-items: center;
+        }
 
         &-text {
             margin-top: 19px;
@@ -707,6 +804,10 @@ button {
             a + a {
                 margin-left: 8px;
             }
+        }
+
+        @media (max-width: $screen-xl) {
+            padding: 0 20px;
         }
     }
 }

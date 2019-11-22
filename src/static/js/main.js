@@ -64,12 +64,19 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleClass () {
             this.$node.classList.toggle('active')
         }
+
+        active () {
+            this.$node.classList.add('active')
+        }
+
+        disable () {
+            this.$node.classList.remove('active')
+        }
     }
 
     const $cartSubjectLeft = new Component('.cart-subject__item.left')
     const $cartSubjectRight = new Component('.cart-subject__item.right')
     const $cartMap = new Component('.cart-delivery-country-wrapper')
-    const $delivery = new Component('.delivery')
     const $feeStation = new Component('.subway')
     const $address = new Component('.js-address')
     const $orderDelivery = new Component('.js-order-delivery')
@@ -84,6 +91,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const $priceCourier = new Component('.js-price-courier')
     const $priceCompany = new Component('.js-price-company')
     const $pricePickup = new Component('.js-price-pickup')
+
+    const $labelCourier = new Component('.js-delivery-courier')
+    const $labelCompany = new Component('.js-delivery-company')
+    const $labelPickup = new Component('.js-delivery-pickup')
+
+    const $textArea = new Component('.cart-comment')
 
     let sumItem = 0
     for (const node of $itemPrice) {
@@ -127,48 +140,46 @@ document.addEventListener('DOMContentLoaded', function () {
         $cartSubjectLeft.toggleClass()
     })
 
-    const $deliveryChose = document.querySelectorAll('.cart-delivery-option-item')
-    const $check = document.querySelectorAll('.checkbox')
+    const radios = document.querySelectorAll('input[type="radio"]')
+    const deliveryItems = document.querySelectorAll('.cart-delivery-option-item')
 
-    for (const check of $check) {
-        check.addEventListener('change', (e) => {
-            for (const node of $deliveryChose) {
-                if (!node.classList.contains('active')) {
-                    $deliveryChose.forEach((node) => {
-                        node.classList.remove('active')
-                    })
-                }
+    for (const radio of radios) {
+        radio.addEventListener('change', (e) => {
+            const id = e.target.id
+            for (const node of deliveryItems) {
+                node.classList.remove('active')
             }
-            $check.forEach((elem) => {
-                elem.checked = false
-            })
-            check.checked = true
-            if (check.checked) {
-                check.parentElement.parentElement.classList.add('active')
-            } else {
-                check.parentElement.parentElement.classList.remove('active')
-            }
-
-            if ($delivery.$node.classList.contains('active')) {
-                $cartMap.show()
-            } else {
-                $cartMap.hide()
-            }
-
-            if (e.target.classList.contains('js-check-box-courier')) {
+            if (id === 'delivery-courier') {
                 $orderDelivery.$node.innerText = 'Доставка курьерской службой'
                 $deliveryPrice.$node.innerText = `${$priceCourier.$node.dataset.price} ₽`
                 $deliveryPrice.$node.dataset.price = $priceCourier.$node.dataset.price
-            } if (e.target.classList.contains('js-check-box-company')) {
+                $labelCourier.active()
+                $cartMap.hide()
+            } if (id === 'delivery-company') {
                 $orderDelivery.$node.innerText = 'Доставка транспортной компанией'
                 $deliveryPrice.$node.innerText = `${$priceCompany.$node.dataset.price} ₽`
                 $deliveryPrice.$node.dataset.price = $priceCompany.$node.dataset.price
-            } if (e.target.classList.contains('js-check-box-pickup')) {
+                $labelCompany.active()
+                $cartMap.hide()
+            } if (id === 'delivery-pickup') {
                 $orderDelivery.$node.innerText = 'Самовывоз'
                 $deliveryPrice.$node.innerText = `${$pricePickup.$node.dataset.price} ₽`
                 $deliveryPrice.$node.dataset.price = $pricePickup.$node.dataset.price
+                $labelPickup.active()
+                $cartMap.show()
             }
             totalSum()
         })
     }
+
+    $textArea.$node.addEventListener('change', (e) => {
+        // eslint-disable-next-line no-useless-escape
+        const regexp = /[^a-zA-Z0-9!.,?]+/g
+        const valid = regexp.test(e.target.value)
+        if (!valid) {
+            $textArea.$node.classList.remove('invalid')
+        } else {
+            $textArea.$node.classList.add('invalid')
+        }
+    })
 })
