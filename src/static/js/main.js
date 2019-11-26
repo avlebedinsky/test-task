@@ -53,24 +53,40 @@ document.addEventListener('DOMContentLoaded', function () {
             this.$node = document.querySelector(id)
         }
 
-        hide () {
-            this.$node.classList.add('hide')
+        addClass (name) {
+            const arr = this.$node.className.split(' ')
+            console.log(arr)
+            if (arr.indexOf(name) === -1) {
+                this.$node.className += ' ' + name
+            }
+            // this.$node.classList.add('hide')
         }
 
-        show () {
-            this.$node.classList.remove('hide')
+        removeClass (name) {
+            const regexp = new RegExp('\\b' + name + '\\b', 'g')
+            this.$node.className = this.$node.className.replace(regexp, '')
+            // this.$node.classList.remove('hide')
         }
 
-        toggleClass () {
-            this.$node.classList.toggle('active')
+        toggleClass (name) {
+            if (this.$node.classList) {
+                this.$node.classList.toggle(name)
+            } else {
+            // For IE9
+                const classes = this.$node.className.split(' ')
+                const i = classes.indexOf(name)
+
+                if (i >= 0) {
+                    classes.splice(i, 1)
+                } else {
+                    classes.push(name)
+                    this.$node.className = classes.join(' ')
+                }
+            }
         }
 
-        active () {
-            this.$node.classList.add('active')
-        }
-
-        disable () {
-            this.$node.classList.remove('active')
+        getPrice () {
+            return this.$node.getAttribute('data-price')
         }
     }
 
@@ -99,9 +115,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const $textArea = new Component('.cart-comment')
 
     let sumItem = 0
-    for (const node of $itemPrice) {
-        sumItem += +node.dataset.price
+    for (let i = 0; i <= $itemPrice.length - 1; i++) {
+        sumItem += +$itemPrice[i].getAttribute('data-price')
     }
+
     const discount = sumItem * 0.05
     const discountStr = (discount + '').replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
     const sumDiscount = sumItem - discount
@@ -110,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
     $total.$node.innerText = `${sumDiscountStr} ₽`
 
     function totalSum () {
-        const totalSum = sumDiscount + +$deliveryPrice.$node.dataset.price
+        const totalSum = sumDiscount + +$deliveryPrice.getPrice()
         const totalSumStr = (totalSum + '').replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
         $totalSum.$node.innerText = `${totalSumStr} ₽`
         $cartSum.$node.innerText = `${totalSumStr} ₽`
@@ -119,52 +136,55 @@ document.addEventListener('DOMContentLoaded', function () {
     totalSum()
 
     $mail.$node.addEventListener('change', () => {
-        // eslint-disable-next-line no-useless-escape
-        const value = '(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})'
-        if ($mail.$node.value !== value) {
-            $mailError.show()
+        const re = new RegExp('\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}', 'g')
+        const valid = re.test($mail.$node.value)
+        console.log(valid)
+        if (!valid) {
+            $mailError.removeClass('hide')
         } else {
-            $mailError.hide()
+            $mailError.addClass('hide')
         }
     })
 
+    // TODO change this event
+
     $cartSubjectLeft.$node.addEventListener('click', (e) => {
         e.preventDefault()
-        $cartSubjectLeft.toggleClass()
-        $cartSubjectRight.toggleClass()
+        $cartSubjectLeft.addClass('active')
+        $cartSubjectRight.removeClass('active')
     })
 
     $cartSubjectRight.$node.addEventListener('click', (e) => {
         e.preventDefault()
-        $cartSubjectRight.toggleClass()
-        $cartSubjectLeft.toggleClass()
+        $cartSubjectRight.addClass('active')
+        $cartSubjectLeft.removeClass('active')
     })
 
     const radios = document.querySelectorAll('input[type="radio"]')
     const deliveryItems = document.querySelectorAll('.cart-delivery-option-item')
 
-    for (const radio of radios) {
-        radio.addEventListener('change', (e) => {
+    for (let i = 0; i <= radios.length - 1; i++) {
+        radios[i].addEventListener('change', (e) => {
             const id = e.target.id
-            for (const node of deliveryItems) {
-                node.classList.remove('active')
+            for (let i = 0; i <= deliveryItems.length - 1; i++) {
+                deliveryItems[i].className = deliveryItems[i].className.replace(/\bmystyle\b/g, '')
             }
             if (id === 'delivery-courier') {
                 $orderDelivery.$node.innerText = 'Доставка курьерской службой'
-                $deliveryPrice.$node.innerText = `${$priceCourier.$node.dataset.price} ₽`
-                $deliveryPrice.$node.dataset.price = $priceCourier.$node.dataset.price
+                $deliveryPrice.$node.innerText = `${$priceCourier.getPrice()} ₽`
+                // $deliveryPrice.$node.dataset.price = $priceCourier.getPrice()
                 $labelCourier.active()
                 $cartMap.hide()
             } if (id === 'delivery-company') {
                 $orderDelivery.$node.innerText = 'Доставка транспортной компанией'
-                $deliveryPrice.$node.innerText = `${$priceCompany.$node.dataset.price} ₽`
-                $deliveryPrice.$node.dataset.price = $priceCompany.$node.dataset.price
+                $deliveryPrice.$node.innerText = `${$priceCompany.getPrice()} ₽`
+                // $deliveryPrice.$node.dataset.price = $priceCompany.getPrice()
                 $labelCompany.active()
                 $cartMap.hide()
             } if (id === 'delivery-pickup') {
                 $orderDelivery.$node.innerText = 'Самовывоз'
-                $deliveryPrice.$node.innerText = `${$pricePickup.$node.dataset.price} ₽`
-                $deliveryPrice.$node.dataset.price = $pricePickup.$node.dataset.price
+                $deliveryPrice.$node.innerText = `${$pricePickup.getPrice()} ₽`
+                // $deliveryPrice.$node.dataset.price = $pricePickup.getPrice()
                 $labelPickup.active()
                 $cartMap.show()
             }
@@ -182,4 +202,21 @@ document.addEventListener('DOMContentLoaded', function () {
             $textArea.$node.classList.add('invalid')
         }
     })
+
+    // TODO placeholder for IE9
+
+// $("input[placeholder]").each(function () {
+//         var $this = $(this);
+//         if($this.val() == ""){
+//             $this.val($this.attr("placeholder")).focus(function(){
+//                 if($this.val() == $this.attr("placeholder")) {
+//                     $this.val("");
+//                 }
+//             }).blur(function(){
+//                 if($this.val() == "") {
+//                     $this.val($this.attr("placeholder"));
+//                 }
+//             });
+//         }
+//     });
 })

@@ -4,7 +4,7 @@ module.exports = function () {
             .pipe($.gp.sourcemaps.init())
             .pipe($.gp.sass())
             .pipe($.gp.autoprefixer({
-                overrideBrowserslist: ['last 10 versions']
+                overrideBrowserslist: ['last 20 versions']
             }))
             .on('error', $.gp.notify.onError({
                 title: 'Error sass'

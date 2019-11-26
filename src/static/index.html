@@ -10,6 +10,7 @@
 
     <link rel="shortcut icon" href="static/img/favicon.png">
     <link rel="stylesheet" type="text/css" href="static/css/main.css">
+
     <script src="https://api-maps.yandex.ru/2.1/?apikey=90286dcc-e3a1-485a-bda1-f754ed180904&lang=ru_RU" type="text/javascript"> </script>
 </head>
 
@@ -30,14 +31,13 @@
                         </ul>
                         <div class="header-account">
                             <div class="header-account-location"><img src="static/img/location.png" alt="location"><span class="header-account-location__city">Город:</span><a href="#">Москва</a></div>
-                            <div><img src="static/img/account.png" alt="account"><a href="#">Личный кабинет</a></div>
+                            <div class="header-account-login"><img src="static/img/account.png" alt="account"><a href="#">Личный кабинет</a></div>
                         </div>
                     </div>
 
                     <div class="header-main">
                         <div class="header-main-logo"><a href="#"><img src="static/img/logo.png" alt="logo"></a></div>
-                        <div class="header-main-search"><a href="#"><img src="static/img/search.png" alt="search"></a><input type="" placeholder="Найти что-нибудь">
-                        </div>
+                        <div class="header-main-search"><input type="" placeholder="Найти что-нибудь"></div>
                         <div class="header-main-phone">
                             <div class="header-main-phone-number">+7 800 555-33-86</div>
                             <div class="header-main-phone-callback"><a href="#">Обратный звонок</a></div>
@@ -46,13 +46,13 @@
 
                     <div class="header-nav">
                         <ul class="header-nav-menu">
-                            <li><a href="#">Мельницы</a></li>
-                            <li><a href="#">Техника</a></li>
-                            <li><a href="#">Для выпечки</a></li>
-                            <li><a href="#">Посуда</a></li>
-                            <li><a href="#">Проращиватели</a></li>
-                            <li><a href="#">Детям</a></li>
-                            <li><a href="#">Чай из Непала</a></li>
+                            <li class="header-nav-menu__item"><a href="#">Мельницы</a></li>
+                            <li class="header-nav-menu__item"><a href="#">Техника</a></li>
+                            <li class="header-nav-menu__item"><a href="#">Для выпечки</a></li>
+                            <li class="header-nav-menu__item"><a href="#">Посуда</a></li>
+                            <li class="header-nav-menu__item"><a href="#">Проращиватели</a></li>
+                            <li class="header-nav-menu__item"><a href="#">Детям</a></li>
+                            <li class="header-nav-menu__item"><a href="#">Чай из Непала</a></li>
                         </ul>
                         <div class="header-cart">
                             <a href="#">
@@ -116,14 +116,14 @@
 
                             <div class="cart-delivery">
                                 <div class="cart-delivery-country">
-                                    <div>
+                                    <div class="cart-delivery-country-name">
                                         <p class="cart-form-subtitle">Страна</p>
                                         <select name="" id="">
                                             <option value="">Россия</option>
                                             <option value="">Украина</option>
                                         </select>
                                     </div>
-                                    <div>
+                                    <div class="cart-delivery-country-city">
                                         <p class="cart-form-subtitle">Город</p>
                                         <input required pattern="[а-яА-я-]+" type="text" placeholder="Москва">
                                     </div>
@@ -164,7 +164,7 @@
                                     </label>
                                 </div>
 
-                                <div class="cart-delivery-country-wrapper hide">
+                                <div class="cart-delivery-country-wrapper">
                                     <h3 class="cart-subtitle-small">Пункт самовывоза</h3>
                                     <div class="cart-delivery-country">
                                         <div>
@@ -179,8 +179,10 @@
 
                                     <div id="map" class="cart-map">
                                         <div class="cart-map-title">
-                                            <p class="js-address">Ул. Кузнецкий мост, 9/10 стр.2, офис 204</p>
-                                            <p>Ежедневно с 12:00 до 22:00</p>
+                                            <div class="cart-map-title-inner">
+                                                <p class="js-address">Ул. Кузнецкий мост, 9/10 стр.2, офис 204</p>
+                                                <p>Ежедневно с 12:00 до 22:00</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -202,25 +204,26 @@
                             <h2>Ваш заказ</h2>
                             <div class="cart-order-product-item">
                                 <div class="cart-order-product-item-name">Мельница ручная Kornkraft Mia aMola</div>
-                                <div data-price="18990" class="js-item-price">18 990 ₽</div>
+                                <div data-price="18990" class="cart-order-product-item-price js-item-price">18 990 ₽</div>
                             </div>
                             <div class="cart-order-product-item">
-                                <div class="cart-order-product-item-name">Пшеница БИО, 1 кг (Россия)<div>(2 шт)</div> </div>
-                                <div data-price="420" class="js-item-price">420 ₽</div>
+                                <div class="cart-order-product-item-name">Пшеница БИО, 1 кг (Россия)<div>(2 шт)</div>
+                                </div>
+                                <div data-price="420" class="cart-order-product-item-price js-item-price">420 ₽</div>
                             </div>
                         </div>
                         <div class="cart-order-product subtotal">
                             <div class="cart-order-product-item">
                                 <div>Размер скидки<span>(5%)</span></div>
-                                <div data-price="" class="js-item-price-discount">420 ₽</div>
+                                <div data-price="" class="cart-order-product-item-price js-item-price-discount">420 ₽</div>
                             </div>
                             <div class="cart-order-product-item">
                                 <div>Итого</div>
-                                <div class="js-item-price-total">18 344 ₽</div>
+                                <div data-price="" class="cart-order-product-item-price js-item-price-total">18 344 ₽</div>
                             </div>
                             <div class="cart-order-product-item">
                                 <div class="js-order-delivery">Доставка курьерской службой</div>
-                                <div data-price="710" class="js-delivery-price">710 ₽</div>
+                                <div data-price="710" class="cart-order-product-item-price js-delivery-price">710 ₽</div>
                             </div>
                         </div>
                         <div>
@@ -243,13 +246,13 @@
                     <div class="footer-item">
                         <h3>Каталог</h3>
                         <div class="footer-item-inner">
-                            <div class="footer-item-inner-column">
+                            <div class="footer-item-inner-column-1">
                                 <a href="#">Мельницы</a>
                                 <a href="#">Техника</a>
                                 <a href="#">Для выпечки</a>
                                 <a href="#">Посуда</a>
                             </div>
-                            <div>
+                            <div class="footer-item-inner-column-2">
                                 <a href="#">Проращиватели</a>
                                 <a href="#">Детям</a>
                                 <a href="#">Чай из Непала</a>

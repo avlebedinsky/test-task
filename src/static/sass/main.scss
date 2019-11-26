@@ -98,19 +98,23 @@ button {
     }
 
     &-top-menu {
-        display: flex;
-        justify-content: space-between;
         padding-top: 20px;
         padding-bottom: 15px;
         border-bottom: 1px solid #dcd4ca;
+    }
 
-        @media (max-width: $screen-xl) {
-            flex-direction: column;
-        }
+    &-top-menu::after {
+        display: table;
+        clear: both;
+        content: "";
     }
 
     &-links {
-        display: flex;
+        float: left;
+
+        li {
+            display: inline-block;
+        }
 
         li + li {
             margin-left: 37px;
@@ -121,20 +125,26 @@ button {
         }
 
         @media (max-width: $screen-xl) {
-            justify-content: center;
+            float: none;
             padding-bottom: 20px;
+            text-align: center;
         }
     }
 
     &-account {
-        display: flex;
+        float: right;
 
         &-location {
+            display: inline-block;
             margin-right: 40px;
 
             &__city {
                 margin-right: 5px;
             }
+        }
+
+        &-login {
+            display: inline-block;
         }
 
         a {
@@ -146,34 +156,40 @@ button {
         }
 
         @media (max-width: $screen-xl) {
-            justify-content: center;
+            float: none;
+            text-align: center;
         }
     }
 
     &-main {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        display: table;
+        width: 100%;
         padding: 20px 0;
         border-bottom: 1px solid #dcd4ca;
 
+        &-logo {
+            display: table-cell;
+            vertical-align: middle;
+
+            @media (max-width: $screen-xl) {
+                display: block;
+                text-align: center;
+            }
+        }
+
         &-search {
             position: relative;
-
-            img {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-
-                @media (max-width: $screen-xl) {
-                    top: 25px;
-                }
-            }
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
 
             input {
                 width: 330px;
                 height: 35px;
                 padding: 0 35px;
+                background-image: url(../img/search.png);
+                background-repeat: no-repeat;
+                background-position: 13px;
                 border: 1px solid #e5dfd9;
                 border-radius: 20px;
 
@@ -183,11 +199,17 @@ button {
             }
 
             @media (max-width: $screen-xl) {
+                display: block;
                 padding: 15px 0;
+                text-align: center;
             }
         }
 
         &-phone {
+            display: table-cell;
+            text-align: right;
+            vertical-align: middle;
+
             &-number {
                 font-family: $georgia;
                 font-size: 28px;
@@ -202,20 +224,30 @@ button {
                 a {
                     border-bottom: 1px dotted #c3bab4;
                 }
+
+                @media (max-width: $screen-xl) {
+                    display: block;
+                    text-align: center;
+                }
+            }
+
+            @media (max-width: $screen-xl) {
+                display: block;
+                text-align: center;
             }
         }
 
         @media (max-width: $screen-xl) {
-            flex-direction: column;
+            display: block;
         }
     }
 
     &-nav {
-        display: flex;
-        justify-content: space-between;
+        display: table;
+        width: 100%;
 
         &-menu {
-            display: flex;
+            float: left;
             margin: 24px 0;
 
             a {
@@ -223,6 +255,14 @@ button {
                 font-weight: bold;
                 color: $title-color;
                 text-transform: uppercase;
+            }
+
+            &__item {
+                display: inline-block;
+
+                @media (max-width: $screen-xl) {
+                    display: block;
+                }
             }
 
             li + li {
@@ -235,24 +275,31 @@ button {
             }
 
             @media (max-width: $screen-xl) {
-                flex-direction: column;
-                align-items: center;
+                float: none;
             }
         }
 
         @media (max-width: $screen-xl) {
-            flex-direction: column;
-            padding-top: 20px;
-            padding-left: 20px;
+            display: block;
+            padding: 20px;
+            text-align: center;
         }
     }
 
+    &-nav::after {
+        display: table;
+        clear: both;
+        content: '';
+    }
+
     &-cart {
-        display: flex;
-        align-items: center;
+        display: table-cell;
+        text-align: right;
+        vertical-align: middle;
 
         &-basket {
             position: relative;
+            display: inline-block;
             margin-right: 7px;
         }
 
@@ -272,13 +319,15 @@ button {
         }
 
         &-sum {
+            display: inline-block;
             font-size: 17px;
             font-weight: bold;
         }
 
         @media (max-width: $screen-xl) {
-            justify-content: center;
+            display: block;
             padding: 20px;
+            text-align: center;
         }
     }
 }
@@ -322,6 +371,7 @@ button {
     }
 
     &-inform {
+        float: left;
         width: 390px;
 
         @media (max-width: $screen-xl) {
@@ -336,15 +386,17 @@ button {
     }
 
     &-container {
-        display: flex;
-        justify-content: space-between;
         max-width: 970px;
         margin: 0 auto;
 
-        @media (max-width: $screen-xl) {
-            flex-direction: column;
-            align-items: center;
-        }
+        // @media (max-width: $screen-xl) {
+        // }
+    }
+
+    &-container::after {
+        display: table;
+        clear: both;
+        content: '';
     }
 
     &-title {
@@ -362,11 +414,12 @@ button {
     }
 
     &-subject {
-        display: flex;
         margin-top: 35px;
         margin-bottom: 45px;
+        text-align: left;
 
         &__item {
+            display: inline-block;
             width: 195px;
             height: 50px;
             font-size: 15px;
@@ -383,6 +436,7 @@ button {
         }
 
         .right {
+            margin-left: -4px;
             border: 1px solid #f0e4ca;
             border-radius: 0 5px 5px 0;
         }
@@ -420,8 +474,14 @@ button {
     }
 
     &-user {
-        display: flex;
-        justify-content: space-between;
+        &-name {
+            display: inline-block;
+            margin-right: 16px;
+        }
+
+        &-surname {
+            display: inline-block;
+        }
     }
 
     .cart-form-subtitle {
@@ -442,14 +502,13 @@ button {
     }
 
     &-contact {
-        display: flex;
-        justify-content: flex-start;
         margin-top: 18px;
         margin-bottom: 22px;
 
         &-mail {
+            display: inline-block;
             width: 195px;
-            margin-right: 10px;
+            margin-right: 6px;
 
             &-error {
                 padding-left: 10px;
@@ -461,10 +520,14 @@ button {
         }
 
         &-number {
+            display: inline-block;
+
             &-phone {
-                display: flex;
+                position: relative;
 
                 &-first {
+                    position: absolute;
+                    display: inline-block;
                     width: 40px;
                     height: 35px;
                     line-height: 34px;
@@ -475,7 +538,9 @@ button {
                 }
 
                 input[type="text"] {
+                    display: inline-block;
                     width: 122px;
+                    margin-left: 40px;
                     border-radius: 0 3px 3px 0;
                 }
             }
@@ -484,9 +549,16 @@ button {
 
     &-delivery {
         &-country {
-            display: flex;
-            justify-content: space-between;
             margin-bottom: 25px;
+
+            &-name {
+                display: inline-block;
+                margin-right: 16px;
+            }
+
+            &-city {
+                display: inline-block;
+            }
 
             select {
                 width: 185px;
@@ -512,11 +584,10 @@ button {
 
             &-item {
                 z-index: 100;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
                 width: 390px;
-                height: 72px;
+                height: 80px;
+                padding-top: 16px;
+                padding-bottom: 10px;
                 margin: -1px 1px 0 0;
                 cursor: pointer;
                 border: 1px dashed #f0e4ca;
@@ -531,7 +602,7 @@ button {
                 }
 
                 &-text {
-                    padding-top: 8px;
+                    padding-top: 4px;
                     padding-left: 45px;
                     font-size: 13px;
                     color: #c4b7b1;
@@ -568,16 +639,23 @@ button {
             bottom: 0;
             left: 0;
             z-index: 4;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            display: table-cell;
             width: 100%;
-            height: 45%;
-            padding: 0 0 24px 24px;
+            height: 30%;
+            padding-left: 24px;
             font-size: 16px;
             color: $title-color;
             vertical-align: bottom;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fdfcfa 50%);
+            // background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fdfcfa 50%);
+            background-image: url(../img/map-bg.png);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+
+            &-inner {
+                position: absolute;
+                bottom: 28px;
+            }
         }
     }
 
@@ -591,10 +669,9 @@ button {
     }
 
     &-pay {
-        display: flex;
-        justify-content: flex-end;
         margin-top: 28px;
         margin-bottom: 47px;
+        text-align: right;
 
         &-btn {
             width: 226px;
@@ -610,6 +687,7 @@ button {
     }
 
     &-order {
+        float: right;
         width: 390px;
         height: 100%;
         margin-top: 117px;
@@ -633,11 +711,19 @@ button {
             }
 
             &-item {
-                display: flex;
-                justify-content: space-between;
+                position: relative;
+                width: 100%;
 
                 &-name {
+                    display: inline-block;
                     width: 190px;
+                }
+
+                &-price {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    display: inline-block;
                 }
             }
 
@@ -655,10 +741,13 @@ button {
             border-bottom: none;
 
             &-title {
+                display: inline-block;
+                padding: 4px;
                 color: $title-color;
             }
 
             &-sum {
+                float: right;
                 font-size: 20px;
                 font-weight: bold;
                 color: $title-color;
@@ -679,15 +768,16 @@ button {
         width: 100%;
         height: 302px;
         background: url('../img/footer.jpg') no-repeat;
-        background-position: bottom;
+        background-position: bottom center;
         background-size: cover;
     }
 
     &-inner {
-        display: flex;
-        justify-content: space-between;
+        display: table;
+        width: 100%;
         max-width: 970px;
-        padding-top: 40px;
+        padding-top: 35px;
+        padding-bottom: 50px;
         margin: 0 auto;
         border-bottom: 2px solid $accent-color;
 
@@ -697,6 +787,7 @@ button {
     }
 
     &-item {
+        display: table-cell;
         max-width: 230px;
         margin-bottom: 48px;
 
@@ -727,14 +818,20 @@ button {
         }
 
         &-inner {
-            display: flex;
+            display: table;
 
-            &-column {
-                margin-right: 26px;
+            &-column-1 {
+                display: inline-block;
+                margin-right: 16px;
 
                 @media (max-width: $screen-xl) {
                     margin-right: 10px;
                 }
+            }
+
+            &-column-2 {
+                display: table-cell;
+                vertical-align: top;
             }
         }
 
@@ -782,23 +879,20 @@ button {
     }
 
     &-copyright {
-        display: flex;
-        justify-content: space-between;
         max-width: 970px;
         margin: 0 auto;
 
-        &-wrapper {
-            display: flex;
-            align-items: center;
-        }
+        // &-wrapper {
+        // }
 
         &-text {
+            float: left;
             margin-top: 19px;
             margin-bottom: 19px;
         }
 
         &-icon {
-            display: flex;
+            float: right;
             margin-top: 13px;
 
             a + a {
@@ -809,6 +903,12 @@ button {
         @media (max-width: $screen-xl) {
             padding: 0 20px;
         }
+    }
+
+    &-copyright::after {
+        display: table;
+        clear: both;
+        content: '';
     }
 }
 
