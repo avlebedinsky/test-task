@@ -181,13 +181,15 @@ document.addEventListener('DOMContentLoaded', function () {
             } if (id === 'delivery-company') {
                 $orderDelivery.$node.innerText = 'Доставка транспортной компанией'
                 $deliveryPrice.$node.innerText = `${$priceCompany.getPrice()} ₽`
-                // $deliveryPrice.$node.dataset.price = $priceCompany.getPrice()
+                const price = $priceCompany.getPrice().toString()
+                $deliveryPrice.setPrice(price)
                 $labelCompany.addClass('active')
                 $cartMap.addClass('hide')
             } if (id === 'delivery-pickup') {
                 $orderDelivery.$node.innerText = 'Самовывоз'
                 $deliveryPrice.$node.innerText = `${$pricePickup.getPrice()} ₽`
-                // $deliveryPrice.$node.dataset.price = $pricePickup.getPrice()
+                const price = $pricePickup.getPrice().toString()
+                $deliveryPrice.setPrice(price)
                 $labelPickup.addClass('active')
                 $cartMap.removeClass('hide')
             }
@@ -196,7 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     $textArea.$node.addEventListener('change', (e) => {
-        // eslint-disable-next-line no-useless-escape
         const regexp = /[^a-zA-Z0-9!.,?]+/g
         const valid = regexp.test(e.target.value)
         if (!valid) {
@@ -208,18 +209,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // TODO placeholder for IE9
 
-// $("input[placeholder]").each(function () {
-//         var $this = $(this);
-//         if($this.val() == ""){
-//             $this.val($this.attr("placeholder")).focus(function(){
-//                 if($this.val() == $this.attr("placeholder")) {
-//                     $this.val("");
-//                 }
-//             }).blur(function(){
-//                 if($this.val() == "") {
-//                     $this.val($this.attr("placeholder"));
-//                 }
-//             });
-//         }
-//     });
+    const $placeHolder = document.querySelectorAll('input[placeholder]')
+
+    for (let i = 0; i <= $placeHolder.length - 1; i++) {
+        const node = $placeHolder[i]
+        if (node.value === '') {
+            node.value = node.getAttribute('placeholder')
+            node.addEventListener('focus', () => {
+                if (node.value === node.getAttribute('placeholder')) {
+                    node.value = ''
+                }
+            })
+            node.addEventListener('blur', () => {
+                if (node.value === '') {
+                    node.value = node.getAttribute('placeholder')
+                }
+            })
+        }
+    }
 })
