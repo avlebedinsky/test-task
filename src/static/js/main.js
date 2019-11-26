@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function totalSum () {
         const totalSum = sumDiscount + +$deliveryPrice.getPrice()
         const totalSumStr = (totalSum + '').replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+        console.log(totalSumStr)
         $totalSum.$node.innerText = `${totalSumStr} ₽`
         $cartSum.$node.innerText = `${totalSumStr} ₽`
     }
@@ -167,26 +168,26 @@ document.addEventListener('DOMContentLoaded', function () {
         radios[i].addEventListener('change', (e) => {
             const id = e.target.id
             for (let i = 0; i <= deliveryItems.length - 1; i++) {
-                deliveryItems[i].className = deliveryItems[i].className.replace(/\bmystyle\b/g, '')
+                deliveryItems[i].className = deliveryItems[i].className.replace(/\bactive\b/g, '')
             }
             if (id === 'delivery-courier') {
                 $orderDelivery.$node.innerText = 'Доставка курьерской службой'
                 $deliveryPrice.$node.innerText = `${$priceCourier.getPrice()} ₽`
                 // $deliveryPrice.$node.dataset.price = $priceCourier.getPrice()
-                $labelCourier.active()
-                $cartMap.hide()
+                $labelCourier.addClass('active')
+                $cartMap.addClass('hide')
             } if (id === 'delivery-company') {
                 $orderDelivery.$node.innerText = 'Доставка транспортной компанией'
                 $deliveryPrice.$node.innerText = `${$priceCompany.getPrice()} ₽`
                 // $deliveryPrice.$node.dataset.price = $priceCompany.getPrice()
-                $labelCompany.active()
-                $cartMap.hide()
+                $labelCompany.addClass('active')
+                $cartMap.addClass('hide')
             } if (id === 'delivery-pickup') {
                 $orderDelivery.$node.innerText = 'Самовывоз'
                 $deliveryPrice.$node.innerText = `${$pricePickup.getPrice()} ₽`
                 // $deliveryPrice.$node.dataset.price = $pricePickup.getPrice()
-                $labelPickup.active()
-                $cartMap.show()
+                $labelPickup.addClass('active')
+                $cartMap.removeClass('hide')
             }
             totalSum()
         })
