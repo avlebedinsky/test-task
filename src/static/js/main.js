@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         addClass (name) {
             const arr = this.$node.className.split(' ')
-            console.log(arr)
             if (arr.indexOf(name) === -1) {
                 this.$node.className += ' ' + name
             }
@@ -87,6 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         getPrice () {
             return this.$node.getAttribute('data-price')
+        }
+
+        setPrice (value) {
+            return this.$node.setAttribute('data-price', value)
         }
     }
 
@@ -129,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function totalSum () {
         const totalSum = sumDiscount + +$deliveryPrice.getPrice()
         const totalSumStr = (totalSum + '').replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
-        console.log(totalSumStr)
         $totalSum.$node.innerText = `${totalSumStr} ₽`
         $cartSum.$node.innerText = `${totalSumStr} ₽`
     }
@@ -139,7 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
     $mail.$node.addEventListener('change', () => {
         const re = new RegExp('\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}', 'g')
         const valid = re.test($mail.$node.value)
-        console.log(valid)
         if (!valid) {
             $mailError.removeClass('hide')
         } else {
@@ -173,7 +174,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (id === 'delivery-courier') {
                 $orderDelivery.$node.innerText = 'Доставка курьерской службой'
                 $deliveryPrice.$node.innerText = `${$priceCourier.getPrice()} ₽`
-                // $deliveryPrice.$node.dataset.price = $priceCourier.getPrice()
+                const price = $priceCourier.getPrice().toString()
+                $deliveryPrice.setPrice(price)
                 $labelCourier.addClass('active')
                 $cartMap.addClass('hide')
             } if (id === 'delivery-company') {
