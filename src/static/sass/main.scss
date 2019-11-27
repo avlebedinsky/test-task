@@ -338,6 +338,10 @@ button {
     max-width: 970px;
     margin: 0 auto;
 
+    .invalid {
+        border: 1px solid red !important;
+    }
+
     .radio {
         display: none;
     }
@@ -521,6 +525,7 @@ button {
 
         &-number {
             display: inline-block;
+            vertical-align: top;
 
             &-phone {
                 position: relative;
@@ -662,10 +667,6 @@ button {
     &-comment {
         width: 390px;
         border: 1px solid #c4b7b1;
-    }
-
-    .invalid {
-        border: 1px solid red;
     }
 
     &-pay {
@@ -912,6 +913,6 @@ button {
     }
 }
 
-input[type="text"]:invalid {
-    border: 1px solid red;
-}
+// input[type="text"]:invalid {
+//     border: 1px solid red;
+// }

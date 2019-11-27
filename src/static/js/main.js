@@ -1,53 +1,6 @@
 /* eslint-disable no-undef */
 'use strict'
 document.addEventListener('DOMContentLoaded', function () {
-    ymaps.ready(init)
-
-    function init () {
-        const kuznetskiyMost = [55.7615072772162, 37.624516499999956]
-        const vdnh = [55.82109777693579, 37.641036499999885]
-        const kievskaya = [55.743588277269964, 37.565586499999945]
-        const myMap = new ymaps.Map('map', {
-            center: [55.7615072772162, 37.624516499999956],
-            zoom: 13
-        })
-        const addPlacemark = (coordinates, iconColor) => {
-            return (myMap.geoObjects
-                .add(new ymaps.Placemark(coordinates, {
-                    balloonContent: 'цвет <strong>воды пляжа бонди</strong>'
-                }, {
-                    preset: 'islands#icon',
-                    iconColor: iconColor
-                })))
-        }
-
-        addPlacemark(kuznetskiyMost, '#0095b6')
-        addPlacemark(vdnh, '#0095b6')
-        addPlacemark(kievskaya, '#0095b6')
-
-        $feeStation.$node.addEventListener('change', () => {
-            const value = $feeStation.$node.value
-            switch (value) {
-            case 'ВДНХ':
-                myMap.panTo(vdnh, { delay: 6500 })
-                $address.$node.innerText = 'пр-т Мира, 146, офис 55'
-                break
-            case 'Кузнецкий мост':
-                myMap.panTo(kuznetskiyMost, { delay: 6500 })
-                $address.$node.innerText = 'Ул. Кузнецкий мост, 9/10 стр.2, офис 204'
-                break
-            case 'Киевская':
-                myMap.panTo(kievskaya, { delay: 7000 })
-                $address.$node.innerText = 'ул. Киевская, 14 строение 1, офис 404'
-                break
-            default:
-                myMap.panTo(kuznetskiyMost, { delay: 6500 })
-                $address.$node.innerText = 'Ул. Кузнецкий мост, 9/10 стр.2, офис 204'
-                break
-            }
-        })
-    }
-
     class Component {
         constructor (id) {
             this.$node = document.querySelector(id)
@@ -95,18 +48,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const $cartSubjectLeft = new Component('.cart-subject__item.left')
     const $cartSubjectRight = new Component('.cart-subject__item.right')
+
     const $cartMap = new Component('.cart-delivery-country-wrapper')
     const $feeStation = new Component('.subway')
+
     const $address = new Component('.js-address')
     const $orderDelivery = new Component('.js-order-delivery')
     const $mailError = new Component('.cart-contact-mail-error')
-    const $mail = new Component('.js-mail')
+    // const $mail = new Component('.js-mail')
+
     const $deliveryPrice = new Component('.js-delivery-price')
     const $discount = new Component('.js-item-price-discount')
     const $total = new Component('.js-item-price-total')
     const $itemPrice = document.querySelectorAll('.js-item-price')
     const $totalSum = new Component('.total-sum')
     const $cartSum = new Component('.header-cart-sum')
+
     const $priceCourier = new Component('.js-price-courier')
     const $priceCompany = new Component('.js-price-company')
     const $pricePickup = new Component('.js-price-pickup')
@@ -116,6 +73,105 @@ document.addEventListener('DOMContentLoaded', function () {
     const $labelPickup = new Component('.js-delivery-pickup')
 
     const $textArea = new Component('.cart-comment')
+    const $userName = new Component('.cart-user-name input')
+    const $userSurname = new Component('.cart-user-surname input')
+    const $userMail = new Component('.cart-contact-mail input')
+    const $userPhone = new Component('.cart-contact-number-phone input')
+    const $city = new Component('.cart-delivery-country-city input')
+
+    // TODO change node to e.target
+    function isValid (node, validator, flag = 'g') {
+        const re = new RegExp(validator, flag)
+        const isValid = re.test(node.$node.value)
+        if (!isValid) {
+            node.addClass('invalid')
+        } else {
+            node.removeClass('invalid')
+        }
+        return isValid
+    }
+
+    $userName.$node.addEventListener('change', () => {
+        isValid($userName, '^[а-яА-я-]+$')
+    })
+
+    $userSurname.$node.addEventListener('change', () => {
+        isValid($userSurname, '^[а-яА-я-]+$')
+    })
+
+    $userMail.$node.addEventListener('change', () => {
+        const valid = isValid($userMail, '(\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6})')
+        if (!valid) {
+            $mailError.removeClass('hide')
+        } else {
+            $mailError.addClass('hide')
+        }
+    })
+
+    $userPhone.$node.addEventListener('change', () => {
+        isValid($userPhone, '([0-9]{3}) ([0-9]{3}) ([0-9]{2})-([0-9]{2})')
+    })
+
+    $city.$node.addEventListener('change', () => {
+        isValid($city, '^[а-яА-я-]+$')
+    })
+
+    $textArea.$node.addEventListener('change', (e) => {
+        const regexp = /[^a-zA-Z0-9!.,?]+/g
+        const valid = regexp.test(e.target.value)
+        if (!valid) {
+            $textArea.$node.classList.remove('invalid')
+        } else {
+            $textArea.$node.classList.add('invalid')
+        }
+    })
+
+    ymaps.ready(initMap)
+
+    function initMap () {
+        const kuznetskiyMost = [55.7615072772162, 37.624516499999956]
+        const vdnh = [55.82109777693579, 37.641036499999885]
+        const kievskaya = [55.743588277269964, 37.565586499999945]
+        const myMap = new ymaps.Map('map', {
+            center: [55.7615072772162, 37.624516499999956],
+            zoom: 13
+        })
+        const addPlacemark = (coordinates, iconColor) => {
+            return (myMap.geoObjects
+                .add(new ymaps.Placemark(coordinates, {
+                    balloonContent: 'цвет <strong>воды пляжа бонди</strong>'
+                }, {
+                    preset: 'islands#icon',
+                    iconColor: iconColor
+                })))
+        }
+
+        addPlacemark(kuznetskiyMost, '#0095b6')
+        addPlacemark(vdnh, '#0095b6')
+        addPlacemark(kievskaya, '#0095b6')
+
+        $feeStation.$node.addEventListener('change', () => {
+            const value = $feeStation.$node.value
+            switch (value) {
+            case 'ВДНХ':
+                myMap.panTo(vdnh, { delay: 6500 })
+                $address.$node.innerText = 'пр-т Мира, 146, офис 55'
+                break
+            case 'Кузнецкий мост':
+                myMap.panTo(kuznetskiyMost, { delay: 6500 })
+                $address.$node.innerText = 'Ул. Кузнецкий мост, 9/10 стр.2, офис 204'
+                break
+            case 'Киевская':
+                myMap.panTo(kievskaya, { delay: 7000 })
+                $address.$node.innerText = 'ул. Киевская, 14 строение 1, офис 404'
+                break
+            default:
+                myMap.panTo(kuznetskiyMost, { delay: 6500 })
+                $address.$node.innerText = 'Ул. Кузнецкий мост, 9/10 стр.2, офис 204'
+                break
+            }
+        })
+    }
 
     let sumItem = 0
     for (let i = 0; i <= $itemPrice.length - 1; i++) {
@@ -126,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const discountStr = (discount + '').replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
     const sumDiscount = sumItem - discount
     const sumDiscountStr = (sumDiscount + '').replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+
     $discount.$node.innerText = `${discountStr} ₽`
     $total.$node.innerText = `${sumDiscountStr} ₽`
 
@@ -137,16 +194,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     totalSum()
-
-    $mail.$node.addEventListener('change', () => {
-        const re = new RegExp('\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}', 'g')
-        const valid = re.test($mail.$node.value)
-        if (!valid) {
-            $mailError.removeClass('hide')
-        } else {
-            $mailError.addClass('hide')
-        }
-    })
 
     // TODO change this event
 
@@ -197,22 +244,13 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }
 
-    $textArea.$node.addEventListener('change', (e) => {
-        const regexp = /[^a-zA-Z0-9!.,?]+/g
-        const valid = regexp.test(e.target.value)
-        if (!valid) {
-            $textArea.$node.classList.remove('invalid')
-        } else {
-            $textArea.$node.classList.add('invalid')
-        }
-    })
-
-    // TODO placeholder for IE9
+    // TODO placeholder for IE9. fix
 
     const $placeHolder = document.querySelectorAll('input[placeholder]')
 
     for (let i = 0; i <= $placeHolder.length - 1; i++) {
         const node = $placeHolder[i]
+        node.style.color = '#c4b7b1'
         if (node.value === '') {
             node.value = node.getAttribute('placeholder')
             node.addEventListener('focus', () => {
