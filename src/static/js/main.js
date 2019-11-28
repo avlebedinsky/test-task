@@ -275,7 +275,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // TODO do not use style, change to class
     $smallMenuButton.$node.addEventListener('click', () => {
         const active = window.getComputedStyle($smallMenu.$node).display
-        console.log(active)
         if (active === 'none') {
             $smallMenu.$node.style.display = 'block'
         } else {
