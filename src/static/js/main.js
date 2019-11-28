@@ -120,9 +120,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const regexp = /[^a-zA-Z0-9!.,?]+/g
         const valid = regexp.test(e.target.value)
         if (!valid) {
-            $textArea.$node.classList.remove('invalid')
+            $textArea.removeClass('invalid')
         } else {
-            $textArea.$node.classList.add('invalid')
+            $textArea.addClass('invalid')
         }
     })
 
@@ -136,19 +136,25 @@ document.addEventListener('DOMContentLoaded', function () {
             center: [55.7615072772162, 37.624516499999956],
             zoom: 13
         })
-        const addPlacemark = (coordinates, iconColor) => {
-            return (myMap.geoObjects
-                .add(new ymaps.Placemark(coordinates, {
-                    balloonContent: 'цвет <strong>воды пляжа бонди</strong>'
-                }, {
-                    preset: 'islands#icon',
-                    iconColor: iconColor
-                })))
+        const addPlacemark = (coordinates) => {
+            myMap.geoObjects
+                .add(new ymaps.Placemark(coordinates, {}, {
+                    iconLayout: 'default#image',
+                    iconImageHref: '/static/img/mark.gif',
+                    iconImageSize: [30, 42],
+                    iconImageOffset: [-3, -42]
+                }))
         }
+        myMap.controls.remove('zoomControl')
+        myMap.controls.remove('fullscreenControl')
+        myMap.controls.remove('searchControl')
+        myMap.controls.remove('typeSelector')
+        myMap.controls.remove('trafficControl')
+        myMap.controls.remove('geolocationControl')
 
-        addPlacemark(kuznetskiyMost, '#0095b6')
-        addPlacemark(vdnh, '#0095b6')
-        addPlacemark(kievskaya, '#0095b6')
+        addPlacemark(kuznetskiyMost)
+        addPlacemark(vdnh)
+        addPlacemark(kievskaya)
 
         $feeStation.$node.addEventListener('change', () => {
             const value = $feeStation.$node.value
