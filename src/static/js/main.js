@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const $address = new Component('.js-address')
     const $orderDelivery = new Component('.js-order-delivery')
     const $mailError = new Component('.cart-contact-mail-error')
-    // const $mail = new Component('.js-mail')
 
     const $deliveryPrice = new Component('.js-delivery-price')
     const $discount = new Component('.js-item-price-discount')
@@ -78,6 +77,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const $userMail = new Component('.cart-contact-mail input')
     const $userPhone = new Component('.cart-contact-number-phone input')
     const $city = new Component('.cart-delivery-country-city input')
+
+    const $smallMenuButton = new Component('.header-nav-small')
+    const $smallMenu = new Component('.header-nav-menu')
 
     // TODO change node to e.target
     function isValid (node, validator, flag = 'g') {
@@ -140,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
             myMap.geoObjects
                 .add(new ymaps.Placemark(coordinates, {}, {
                     iconLayout: 'default#image',
-                    iconImageHref: '/static/img/mark.gif',
+                    iconImageHref: '/static/img/mark.png',
                     iconImageSize: [30, 42],
                     iconImageOffset: [-3, -42]
                 }))
@@ -250,8 +252,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }
 
-    // TODO placeholder for IE9. fix
-
     const $placeHolder = document.querySelectorAll('input[placeholder]')
 
     for (let i = 0; i <= $placeHolder.length - 1; i++) {
@@ -271,4 +271,15 @@ document.addEventListener('DOMContentLoaded', function () {
             })
         }
     }
+
+    // TODO do not use style, change to class
+    $smallMenuButton.$node.addEventListener('click', () => {
+        const active = window.getComputedStyle($smallMenu.$node).display
+        console.log(active)
+        if (active === 'none') {
+            $smallMenu.$node.style.display = 'block'
+        } else {
+            $smallMenu.$node.style.display = 'none'
+        }
+    })
 })
